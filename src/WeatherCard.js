@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 const WeatherCard = ({ info }) => {
+
+     const[weatherState,setWeatherState] = useState("");
   const {
     temp,
     pressure,
@@ -10,38 +12,63 @@ const WeatherCard = ({ info }) => {
     city,
     weathermood,
   } = info;
+// converting the time
+  let sec = sunset;
+  let date = new Date(sec * 1000);//time in milisecods
+  let time = `${date.getHours()}:${date.getMinutes()}`;   
 
-  const time = new Date().toLocaleTimeString();
+  useEffect(()=>{
+     if(weathermood){
+     switch(weathermood){
+        case "Clouds":setWeatherState("wi-cloudy");
+        break;
+        case "Haze":setWeatherState("wi-fog");
+        break;
+        case "Clear":setWeatherState("wi-day-sunny");
+        break;
+        case "Rain":setWeatherState("wi-showers");
+        break;
+        default:
+             setWeatherState("wi-day-sunny");
+            break;
+        
+     }
+     }
+    
+  },[weathermood]);
+ 
   return (
     <>
       {/* temp card */}
       <article className="widget">
-        <div className="weatherIcon">
-          <i className="wi wi-day-cloudy"></i>
-        </div>
+      <div className="weatherIcon">
+        <i className={`wi ${weatherState}`} style={{ fontSize: '120px',color:"skyblue" }}></i>
+      </div>
+
         <div className="weatherInfo">
-          <div className="temperature">
+        <div className="country">
+          <div className="temperature background">
             <span>{temp}&deg;</span>
           </div>
-          <div className="description">
+          <div className="description background ">
             <div className="weatherCondition">{weathermood}</div>
             <div className="place">
               {city} {country}
             </div>
           </div>
           <div className="date">{new Date().toLocaleString()}</div>
-
+          </div>
           {/* 4 devided section */}
           <div className="extra-temp">
-            <div className="temp-info-minmax">
+            {/* <div className="temp-info-minmax"> */}
               <div className="two-sided-section">
                 <p>
-                  <i className="wi wi-night-sleet"></i>
+                  <i className="wi wi-sunset"></i>
                 </p>
                 <p className="extra-info-leftside">
-                   {time}
+                {time}
                   <br />
-                  {sunset}
+                  Sunset
                 </p>
               </div>
               <div className="two-sided-section">
@@ -49,36 +76,37 @@ const WeatherCard = ({ info }) => {
                   <i className="wi wi-humidity"></i>
                 </p>
                 <p className="extra-info-leftside">
-                {time}
-                <br />
                   {humidity}
+                  <br/>
+                  Humidity
                 </p>
               </div>
-            </div>
-          </div>
-          <div className="weather-extra-info">
+            {/* </div> */}
+         
+          {/* <div className="weather-extra-info"> */}
             <div className="two-sided-section">
               <p>
-                <i className=" wi wi-humidity"></i>
+                <i className="wi wi-rain"></i>
               </p>
               <p className="extra-info-leftside">
-              {time}
-                <br />
                 {pressure}
+                <br/>
+                Pressure
               </p>
             </div>
             <div className="two-sided-section">
               <p>
-                <i className={"wi-humidity"}></i>
+                <i className="wi wi-strong-wind"></i>
               </p>
               <p className="extra-info-leftside">
-              {time}
-                <br />
                 {speed}
+                <br/>
+                Speed
               </p>
             </div>
           </div>
-        </div>
+          </div>
+        {/* </div> */}
       </article>
     </>
   );
