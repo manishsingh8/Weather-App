@@ -1,1 +1,91 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css);
+
+*{
+  margin:0;
+  padding:0;
+}
+
+.main{
+  height:100vh;
+  width:100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aquamarine;
+
+}
+.inner{
+  height:80%;
+  width:40%;
+  text-align: center;
+  /* border: 2px solid black; */
+  
+}
+/* input and searchbar */
+.container{
+  height:2rem;
+  width:100%;
+  /* border:1px solid red; */
+  display: flex;
+  justify-content: center;
+}
+.search{
+  height:2rem;
+  width:60%;
+}
+.searchTerm{
+  height:100%;
+  width: 80%;
+  border:none;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+ 
+}
+.searchButton{
+  height:100%;
+  width:20%;
+  border:none;
+  background-color: rgb(71, 152, 218);
+  cursor: pointer;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+/* temp card */
+
+.widget{
+  margin-top: 10%;
+  height:80%;
+  width:100%;
+  border:1px solid green;
+  box-shadow: 5px 10px 18px #888888;
+  border-radius: 8px;
+}
+.weatherIcon{
+   height:40%;
+   width:100%;
+   background-color: white;
+}
+
+.extra-temp{
+  height:60%;
+  width:100%;  
+  border:1px solid black;
+  
+}
+
+/* .weatherInfo{
+  display: flex;
+} */
+.temp-info-minmax{
+  height:100%;
+  width:100%;
+  display: flex;
+}
+.weather-extra-info{
+  height:60%;
+  width:100%;  
+  border:1px solid red;
+  display: flex;
+  
+}
